@@ -1,0 +1,18 @@
+{
+	// ファイル保存時に自動的な書式設定
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+
+	"laravel-pint.enable": true,
+	"laravel-pint.enableDebugLogs": true,
+	"laravel-pint.configPath": "pint.json",
+	"[php]": {
+		"editor.defaultFormatter": "open-southeners.laravel-pint",
+		//ダブルクリックで「$」まで選択する
+		"editor.wordSeparators": "`~!@#%^&*()-=+[{]}\\|;:'\",.<>/?"
+	},
+	// 未使用のインポートや変数を目立たせる
+	"workbench.colorCustomizations": {
+		"editorUnnecessaryCode.border": "#dd7aab"
+	}
+}
