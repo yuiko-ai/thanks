@@ -1,11 +1,12 @@
 {
-    "printWidth": 120,
+    "printWidth": 100,
     "singleQuote": true,
     "semi": true,
     "trailingComma": "all",
     "bracketSpacing": true,
     "tabs": false,
     "tabWidth": 4,
+    "tailwindConfig": "tailwind.config.js",
     "plugins": ["prettier-plugin-blade", "prettier-plugin-tailwindcss"],
     "bracketSameLine": true,
     "overrides": [
@@ -16,7 +17,7 @@
             }
         },
         {
-            "files": [".env.example"],
+            "files": [".env", ".env.example"],
             "options": {
                 "parser": "env"
             }
@@ -24,10 +25,10 @@
         {
             "files": ["*.blade.php"],
             "options": {
-                "phpVersion": "8.1",
+                "phpVersion": "8.3",
                 "parser": "blade",
                 "tabWidth": 2,
-                "printWidth": 150,
+                "printWidth": 100,
                 "sortTailwindcssClasses": true
             }
         }

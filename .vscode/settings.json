@@ -1,18 +1,59 @@
 {
-	// ファイル保存時に自動的な書式設定
-	"editor.formatOnSave": true,
-	"editor.defaultFormatter": "esbenp.prettier-vscode",
+    /********************************/
+    /* フォーマッタ設定 */
+    /********************************/
+    // ファイル保存時に自動的な書式設定
+    "editor.formatOnSave": true,
 
-	"laravel-pint.enable": true,
-	"laravel-pint.enableDebugLogs": true,
-	"laravel-pint.configPath": "pint.json",
-	"[php]": {
-		"editor.defaultFormatter": "open-southeners.laravel-pint",
-		//ダブルクリックで「$」まで選択する
-		"editor.wordSeparators": "`~!@#%^&*()-=+[{]}\\|;:'\",.<>/?"
-	},
-	// 未使用のインポートや変数を目立たせる
-	"workbench.colorCustomizations": {
-		"editorUnnecessaryCode.border": "#dd7aab"
-	}
+    // デフォルトのフォーマッター
+    // "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+    // prettierの設定
+    "prettier.configPath": "./.prettierrc",
+    "prettier.requireConfig": true,
+    "prettier.useEditorConfig": false,
+
+    // Pint（PHP コードフォーマッター）の設定
+    "laravel-pint.enable": true,
+    "laravel-pint.enableDebugLogs": true,
+    "laravel-pint.configPath": "./pint.json",
+    "[php]": {
+        "editor.defaultFormatter": "open-southeners.laravel-pint",
+        //ダブルクリックで「$」まで選択する
+        "editor.wordSeparators": "`~!@#%^&*()-=+[{]}\\|;:'\",.<>/?"
+    },
+
+    // Blade（Blade テンプレートフォーマッター）の設定
+    "bladeFormatter.format.indentSize": 2,
+    "bladeFormatter.format.wrapLineLength": 100,
+    "bladeFormatter.format.phpVersion": "8.3",
+    "bladeFormatter.format.sortHtmlAttributes": "code-guide",
+    "bladeFormatter.format.sortTailwindcssClasses": true,
+    "bladeFormatter.format.useTabs": false,
+    "[blade]": {
+        "editor.defaultFormatter": "shufo.vscode-blade-formatter"
+    },
+
+    /********************************/
+    /* ファイル関連設定 */
+    /********************************/
+    // Makefileの設定
+    "makefile.configureOnOpen": false,
+
+    "laravel_goto_view.folders": {
+        "default": "/resources/views"
+    },
+
+    "laravel_goto_controller.pathController": "./app/Http/Controllers",
+
+    "laravel_component_jumper.searchPath": "/resources/views",
+
+    // 未使用のインポートや変数を目立たせる
+    "workbench.colorCustomizations": {
+        "editorUnnecessaryCode.border": "#dd7aab"
+    },
+
+    "intelephense.environment.phpVersion": "8.3.11",
+    "php-docblocker.useShortNames": true,
+    "editor.defaultFormatter": "open-southeners.laravel-pint",
 }

@@ -8,16 +8,19 @@
         "concat_space": {
             "spacing": "one"
         },
-        "fully_qualified_strict_types": false,
+        "fully_qualified_strict_types": true,
         "combine_consecutive_issets": false,
         "combine_consecutive_unsets": false,
         "class_attributes_separation": {
             "elements": {
-                "const": "one",
+                "const": "none",
                 "method": "one",
                 "property": "none",
                 "trait_import": "none"
             }
-        }
-    }
+        },
+
+        "no_superfluous_phpdoc_tags": false
+    },
+    "exclude": ["app/Enums/Base"]
 }

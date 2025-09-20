@@ -6,17 +6,20 @@ export default defineConfig({
         laravel({
             //## エントリーポイントのファイル
             input: ['resources/scss/app.scss', 'resources/js/app.js'],
-            refresh: true,
+            refresh: true
         }),
     ],
     server: {
+        host: '0.0.0.0',
+        port: 5173,
         hmr: {
             host: 'localhost',
+            port: 5173,
         },
-
-        //## WSL2など自動更新が利かない場合にwatchを有効にする
-        // watch: {
-        //   usePolling: true,
-        // },
+        watch: {
+            usePolling: true,
+            interval: 1000,
+        },
     },
+    
 });

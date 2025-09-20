@@ -1,11 +1,11 @@
 # nginx用のアプリサーバーDockerファイル
 
 # マルチステージビルド
-FROM composer:2.6.4 as composer
+FROM composer:2.8.12 as composer
 FROM node:20.10-bullseye-slim as node
 
 # php
-FROM php:8.2.13-fpm-alpine3.18
+FROM php:8.3-fpm-alpine
 
 RUN mkdir /app
 
@@ -54,6 +54,8 @@ COPY ./ /app
 COPY ./.docker/app/php.ini /usr/local/etc/php/conf.d/php.ini
 
 RUN ln -sf /proc/1/fd/1 /app/storage/logs/schedule.log
+
+RUN chown -R www-data:www-data storage bootstrap/cache
 
 #yarnをグローバルでinstall
 RUN npm install -g yarn

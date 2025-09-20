@@ -1,7 +1,5 @@
 up:
 	docker compose up -d
-build:
-	docker compose build --no-cache --force-rm
 laravel-install:
 	docker compose exec app composer create-project --prefer-dist laravel/laravel="9.*" .
 install-recommend-packages:
@@ -18,23 +16,28 @@ init:
 	docker compose up -d --build
 	docker compose exec app composer install
 	docker compose exec app cp .env.example .env
-	docker compose exec app php artisan key:generate
 	docker compose exec app php artisan storage:link
-	docker compose exec app chown -R www-data:www-data storage bootstrap/cache
+	# docker compose exec app chown -R www-data:www-data storage bootstrap/cache
 	docker compose exec app chmod -R 775 storage bootstrap/cache
 	docker compose exec app yarn install
 	docker compose exec app yarn build
-	yarn install
+	# yarn install
 	@make fresh
 remake:
 	@make destroy
 	@make init
 dev:
-	docker compose exec app yarn dev
+	docker compose exec app yarn dev --port 5173
+build:
+	docker compose exec app yarn build
 stop:
 	docker compose stop
+# 通常のコンテナ終了
 down:
 	docker compose down --remove-orphans
+# ボリュームも含めてコンテナを終了
+down-v:
+	docker-compose down --volumes --remove-orphans
 restart:
 	@make down
 	@make up
@@ -71,5 +74,5 @@ clear:
 	docker compose exec app php artisan view:clear
 autoload:
 	docker compose exec app composer dump-autoload
-ide-generate:
+ide:
 	docker compose exec app php artisan ide-helper:generate

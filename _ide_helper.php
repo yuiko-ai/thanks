@@ -4,7 +4,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 10.37.1.
+ * Generated for Laravel 10.43.0.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -5079,6 +5079,20 @@
                         return $instance->connection($name);
         }
                     /**
+         * Get a database connection instance from the given configuration.
+         *
+         * @param string $name
+         * @param array $config
+         * @param bool $force
+         * @return \Illuminate\Database\MySqlConnection 
+         * @static 
+         */ 
+        public static function connectUsing($name, $config, $force = false)
+        {
+                        /** @var \Illuminate\Database\DatabaseManager $instance */
+                        return $instance->connectUsing($name, $config, $force);
+        }
+                    /**
          * Register a custom Doctrine type.
          *
          * @param string $class
@@ -5680,6 +5694,18 @@
         {            //Method inherited from \Illuminate\Database\Connection         
                         /** @var \Illuminate\Database\MySqlConnection $instance */
                         $instance->reconnectIfMissingConnection();
+        }
+                    /**
+         * Register a hook to be run just before a database transaction is started.
+         *
+         * @param \Closure $callback
+         * @return \Illuminate\Database\MySqlConnection 
+         * @static 
+         */ 
+        public static function beforeStartingTransaction($callback)
+        {            //Method inherited from \Illuminate\Database\Connection         
+                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        return $instance->beforeStartingTransaction($callback);
         }
                     /**
          * Register a hook to be run just before a database query is executed.
@@ -7479,9 +7505,9 @@
                         return $instance->after($callback);
         }
                     /**
-         * Determine if the given ability should be granted for the current user.
+         * Determine if all of the given abilities should be granted for the current user.
          *
-         * @param string $ability
+         * @param \Illuminate\Auth\Access\iterable|string $ability
          * @param array|mixed $arguments
          * @return bool 
          * @static 
@@ -7492,9 +7518,9 @@
                         return $instance->allows($ability, $arguments);
         }
                     /**
-         * Determine if the given ability should be denied for the current user.
+         * Determine if any of the given abilities should be denied for the current user.
          *
-         * @param string $ability
+         * @param \Illuminate\Auth\Access\iterable|string $ability
          * @param array|mixed $arguments
          * @return bool 
          * @static 
@@ -7900,7 +7926,7 @@
      * 
      *
      * @method static \Illuminate\Http\Client\PendingRequest baseUrl(string $url)
-     * @method static \Illuminate\Http\Client\PendingRequest withBody(string $content, string $contentType = 'application/json')
+     * @method static \Illuminate\Http\Client\PendingRequest withBody(\Psr\Http\Message\StreamInterface|string $content, string $contentType = 'application/json')
      * @method static \Illuminate\Http\Client\PendingRequest asJson()
      * @method static \Illuminate\Http\Client\PendingRequest asForm()
      * @method static \Illuminate\Http\Client\PendingRequest attach(string|array $name, string|resource $contents = '', string|null $filename = null, array $headers = [])
@@ -7999,6 +8025,18 @@
         {
                         /** @var \Illuminate\Http\Client\Factory $instance */
                         return $instance->globalResponseMiddleware($middleware);
+        }
+                    /**
+         * Set the options to apply to every request.
+         *
+         * @param array $options
+         * @return \Illuminate\Http\Client\Factory 
+         * @static 
+         */ 
+        public static function globalOptions($options)
+        {
+                        /** @var \Illuminate\Http\Client\Factory $instance */
+                        return $instance->globalOptions($options);
         }
                     /**
          * Create a new response instance for use during stubbing.
@@ -8316,7 +8354,7 @@
          * Get a translation according to an integer value.
          *
          * @param string $key
-         * @param \Countable|int|array $number
+         * @param \Countable|int|float|array $number
          * @param array $replace
          * @param string|null $locale
          * @return string 
@@ -8610,7 +8648,6 @@
      *
      * @method static void write(string $level, \Illuminate\Contracts\Support\Arrayable|\Illuminate\Contracts\Support\Jsonable|\Illuminate\Support\Stringable|array|string $message, array $context = [])
      * @method static \Illuminate\Log\Logger withContext(array $context = [])
-     * @method static \Illuminate\Log\Logger withoutContext()
      * @method static void listen(\Closure $callback)
      * @method static \Psr\Log\LoggerInterface getLogger()
      * @method static \Illuminate\Contracts\Events\Dispatcher getEventDispatcher()
@@ -8693,6 +8730,17 @@
                         return $instance->sharedContext();
         }
                     /**
+         * Flush the log context on all currently resolved channels.
+         *
+         * @return \Illuminate\Log\LogManager 
+         * @static 
+         */ 
+        public static function withoutContext()
+        {
+                        /** @var \Illuminate\Log\LogManager $instance */
+                        return $instance->withoutContext();
+        }
+                    /**
          * Flush the shared context.
          *
          * @return \Illuminate\Log\LogManager 
@@ -8765,7 +8813,7 @@
                     /**
          * System is unusable.
          *
-         * @param string $message
+         * @param string|\Stringable $message
          * @param array $context
          * @return void 
          * @static 
@@ -8781,7 +8829,7 @@
          * Example: Entire website down, database unavailable, etc. This should
          * trigger the SMS alerts and wake you up.
          *
-         * @param string $message
+         * @param string|\Stringable $message
          * @param array $context
          * @return void 
          * @static 
@@ -8796,7 +8844,7 @@
          * 
          * Example: Application component unavailable, unexpected exception.
          *
-         * @param string $message
+         * @param string|\Stringable $message
          * @param array $context
          * @return void 
          * @static 
@@ -8810,7 +8858,7 @@
          * Runtime errors that do not require immediate action but should typically
          * be logged and monitored.
          *
-         * @param string $message
+         * @param string|\Stringable $message
          * @param array $context
          * @return void 
          * @static 
@@ -8826,7 +8874,7 @@
          * Example: Use of deprecated APIs, poor use of an API, undesirable things
          * that are not necessarily wrong.
          *
-         * @param string $message
+         * @param string|\Stringable $message
          * @param array $context
          * @return void 
          * @static 
@@ -8839,7 +8887,7 @@
                     /**
          * Normal but significant events.
          *
-         * @param string $message
+         * @param string|\Stringable $message
          * @param array $context
          * @return void 
          * @static 
@@ -8854,7 +8902,7 @@
          * 
          * Example: User logs in, SQL logs.
          *
-         * @param string $message
+         * @param string|\Stringable $message
          * @param array $context
          * @return void 
          * @static 
@@ -8867,7 +8915,7 @@
                     /**
          * Detailed debug information.
          *
-         * @param string $message
+         * @param string|\Stringable $message
          * @param array $context
          * @return void 
          * @static 
@@ -8881,7 +8929,7 @@
          * Logs with an arbitrary level.
          *
          * @param mixed $level
-         * @param string $message
+         * @param string|\Stringable $message
          * @param array $context
          * @return void 
          * @static 
@@ -10326,6 +10374,18 @@
                         $instance->assertNotPushed($job, $callback);
         }
                     /**
+         * Assert the total count of jobs that were pushed.
+         *
+         * @param int $expectedCount
+         * @return void 
+         * @static 
+         */ 
+        public static function assertCount($expectedCount)
+        {
+                        /** @var \Illuminate\Support\Testing\Fakes\QueueFake $instance */
+                        $instance->assertCount($expectedCount);
+        }
+                    /**
          * Assert that no jobs were pushed.
          *
          * @return void 
@@ -10528,6 +10588,18 @@
         {
                         /** @var \Illuminate\Support\Testing\Fakes\QueueFake $instance */
                         return $instance->setConnectionName($name);
+        }
+                    /**
+         * Get the maximum number of attempts for an object-based queue handler.
+         *
+         * @param mixed $job
+         * @return mixed 
+         * @static 
+         */ 
+        public static function getJobTries($job)
+        {            //Method inherited from \Illuminate\Queue\Queue         
+                        /** @var \Illuminate\Queue\SyncQueue $instance */
+                        return $instance->getJobTries($job);
         }
                     /**
          * Get the backoff for an object-based queue handler.
@@ -13368,6 +13440,21 @@
                         return $instance->stream($callback, $status, $headers);
         }
                     /**
+         * Create a new streamed response instance.
+         *
+         * @param array $data
+         * @param int $status
+         * @param array $headers
+         * @param int $encodingOptions
+         * @return \Symfony\Component\HttpFoundation\StreamedJsonResponse 
+         * @static 
+         */ 
+        public static function streamJson($data, $status = 200, $headers = [], $encodingOptions = 15)
+        {
+                        /** @var \Illuminate\Routing\ResponseFactory $instance */
+                        return $instance->streamJson($data, $status, $headers, $encodingOptions);
+        }
+                    /**
          * Create a new streamed response instance as a file download.
          *
          * @param callable $callback
@@ -14737,6 +14824,17 @@
                         return $instance->hasView($view);
         }
                     /**
+         * Get the names of the tables that belong to the database.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getTableListing()
+        {            //Method inherited from \Illuminate\Database\Schema\Builder         
+                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                        return $instance->getTableListing();
+        }
+                    /**
          * Get the user-defined types that belong to the database.
          *
          * @return array 
@@ -14826,6 +14924,32 @@
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
                         /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
                         return $instance->getColumnListing($table);
+        }
+                    /**
+         * Get the names of the indexes for a given table.
+         *
+         * @param string $table
+         * @return array 
+         * @static 
+         */ 
+        public static function getIndexListing($table)
+        {            //Method inherited from \Illuminate\Database\Schema\Builder         
+                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                        return $instance->getIndexListing($table);
+        }
+                    /**
+         * Determine if the given table has a given index.
+         *
+         * @param string $table
+         * @param string|array $index
+         * @param string|null $type
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasIndex($table, $index, $type = null)
+        {            //Method inherited from \Illuminate\Database\Schema\Builder         
+                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                        return $instance->hasIndex($table, $index, $type);
         }
                     /**
          * Modify a table on the schema.
@@ -14983,6 +15107,52 @@
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
                         /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
                         $instance->blueprintResolver($resolver);
+        }
+                    /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param object|callable $macro
+         * @return void 
+         * @static 
+         */ 
+        public static function macro($name, $macro)
+        {            //Method inherited from \Illuminate\Database\Schema\Builder         
+                        \Illuminate\Database\Schema\MySqlBuilder::macro($name, $macro);
+        }
+                    /**
+         * Mix another object into the class.
+         *
+         * @param object $mixin
+         * @param bool $replace
+         * @return void 
+         * @throws \ReflectionException
+         * @static 
+         */ 
+        public static function mixin($mixin, $replace = true)
+        {            //Method inherited from \Illuminate\Database\Schema\Builder         
+                        \Illuminate\Database\Schema\MySqlBuilder::mixin($mixin, $replace);
+        }
+                    /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasMacro($name)
+        {            //Method inherited from \Illuminate\Database\Schema\Builder         
+                        return \Illuminate\Database\Schema\MySqlBuilder::hasMacro($name);
+        }
+                    /**
+         * Flush the existing macros.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function flushMacros()
+        {            //Method inherited from \Illuminate\Database\Schema\Builder         
+                        \Illuminate\Database\Schema\MySqlBuilder::flushMacros();
         }
          
     }
@@ -15196,6 +15366,18 @@
         {
                         /** @var \Illuminate\Session\Store $instance */
                         return $instance->only($keys);
+        }
+                    /**
+         * Get all the session data except for a specified array of items.
+         *
+         * @param array $keys
+         * @return array 
+         * @static 
+         */ 
+        public static function except($keys)
+        {
+                        /** @var \Illuminate\Session\Store $instance */
+                        return $instance->except($keys);
         }
                     /**
          * Checks if a key exists.
@@ -18330,6 +18512,18 @@
                         return $instance->useManifestFilename($filename);
         }
                     /**
+         * Resolve asset paths using the provided resolver.
+         *
+         * @param callable|null $urlResolver
+         * @return \Illuminate\Foundation\Vite 
+         * @static 
+         */ 
+        public static function createAssetPathsUsing($resolver)
+        {
+                        /** @var \Illuminate\Foundation\Vite $instance */
+                        return $instance->createAssetPathsUsing($resolver);
+        }
+                    /**
          * Get the Vite "hot" file path.
          *
          * @return string 
@@ -19125,696 +19319,6 @@
      
 }
 
-    namespace Barryvdh\DomPDF\Facade { 
-            /**
-     * 
-     *
-     * @method static \Barryvdh\DomPDF\PDF setPaper($paper, $orientation = 'portrait')
-     * @method static \Barryvdh\DomPDF\PDF setBaseHost(string $baseHost)
-     * @method static \Barryvdh\DomPDF\PDF setProtocol(string $protocol)
-     * @method static \Barryvdh\DomPDF\PDF setHttpContext($httpContext)
-     * @method static \Barryvdh\DomPDF\PDF setCallbacks(array $callbacks)
-     */ 
-        class Pdf {
-                    /**
-         * Get the DomPDF instance
-         *
-         * @return \Dompdf\Dompdf 
-         * @static 
-         */ 
-        public static function getDomPDF()
-        {
-                        /** @var \Barryvdh\DomPDF\PDF $instance */
-                        return $instance->getDomPDF();
-        }
-                    /**
-         * Show or hide warnings
-         *
-         * @static 
-         */ 
-        public static function setWarnings($warnings)
-        {
-                        /** @var \Barryvdh\DomPDF\PDF $instance */
-                        return $instance->setWarnings($warnings);
-        }
-                    /**
-         * Load a HTML string
-         *
-         * @param string|null $encoding Not used yet
-         * @static 
-         */ 
-        public static function loadHTML($string, $encoding = null)
-        {
-                        /** @var \Barryvdh\DomPDF\PDF $instance */
-                        return $instance->loadHTML($string, $encoding);
-        }
-                    /**
-         * Load a HTML file
-         *
-         * @static 
-         */ 
-        public static function loadFile($file)
-        {
-                        /** @var \Barryvdh\DomPDF\PDF $instance */
-                        return $instance->loadFile($file);
-        }
-                    /**
-         * Add metadata info
-         *
-         * @param array<string, string> $info
-         * @return static 
-         * @static 
-         */ 
-        public static function addInfo($info)
-        {
-                        /** @var \Barryvdh\DomPDF\PDF $instance */
-                        return $instance->addInfo($info);
-        }
-                    /**
-         * Load a View and convert to HTML
-         *
-         * @param array<string, mixed> $data
-         * @param array<string, mixed> $mergeData
-         * @param string|null $encoding Not used yet
-         * @static 
-         */ 
-        public static function loadView($view, $data = [], $mergeData = [], $encoding = null)
-        {
-                        /** @var \Barryvdh\DomPDF\PDF $instance */
-                        return $instance->loadView($view, $data, $mergeData, $encoding);
-        }
-                    /**
-         * Set/Change an option (or array of options) in Dompdf
-         *
-         * @param array<string, mixed>|string $attribute
-         * @param null|mixed $value
-         * @return \Barryvdh\DomPDF\PDF 
-         * @static 
-         */ 
-        public static function setOption($attribute, $value = null)
-        {
-                        /** @var \Barryvdh\DomPDF\PDF $instance */
-                        return $instance->setOption($attribute, $value);
-        }
-                    /**
-         * Replace all the Options from DomPDF
-         *
-         * @deprecated Use setOption to override individual options.
-         * @param array<string, mixed> $options
-         * @static 
-         */ 
-        public static function setOptions($options)
-        {
-                        /** @var \Barryvdh\DomPDF\PDF $instance */
-                        return $instance->setOptions($options);
-        }
-                    /**
-         * Output the PDF as a string.
-         * 
-         * The options parameter controls the output. Accepted options are:
-         * 
-         * 'compress' = > 1 or 0 - apply content stream compression, this is
-         *    on (1) by default
-         *
-         * @param array<string, int> $options
-         * @return string The rendered PDF as string
-         * @static 
-         */ 
-        public static function output($options = [])
-        {
-                        /** @var \Barryvdh\DomPDF\PDF $instance */
-                        return $instance->output($options);
-        }
-                    /**
-         * Save the PDF to a file
-         *
-         * @static 
-         */ 
-        public static function save($filename, $disk = null)
-        {
-                        /** @var \Barryvdh\DomPDF\PDF $instance */
-                        return $instance->save($filename, $disk);
-        }
-                    /**
-         * Make the PDF downloadable by the user
-         *
-         * @static 
-         */ 
-        public static function download($filename = 'document.pdf')
-        {
-                        /** @var \Barryvdh\DomPDF\PDF $instance */
-                        return $instance->download($filename);
-        }
-                    /**
-         * Return a response with the PDF to show in the browser
-         *
-         * @static 
-         */ 
-        public static function stream($filename = 'document.pdf')
-        {
-                        /** @var \Barryvdh\DomPDF\PDF $instance */
-                        return $instance->stream($filename);
-        }
-                    /**
-         * Render the PDF
-         *
-         * @static 
-         */ 
-        public static function render()
-        {
-                        /** @var \Barryvdh\DomPDF\PDF $instance */
-                        return $instance->render();
-        }
-                    /**
-         * 
-         *
-         * @param array<string> $pc
-         * @static 
-         */ 
-        public static function setEncryption($password, $ownerpassword = '', $pc = [])
-        {
-                        /** @var \Barryvdh\DomPDF\PDF $instance */
-                        return $instance->setEncryption($password, $ownerpassword, $pc);
-        }
-         
-    }
-            /**
-     * 
-     *
-     * @method static \Barryvdh\DomPDF\PDF setPaper($paper, $orientation = 'portrait')
-     * @method static \Barryvdh\DomPDF\PDF setBaseHost(string $baseHost)
-     * @method static \Barryvdh\DomPDF\PDF setProtocol(string $protocol)
-     * @method static \Barryvdh\DomPDF\PDF setHttpContext($httpContext)
-     * @method static \Barryvdh\DomPDF\PDF setCallbacks(array $callbacks)
-     */ 
-        class Pdf {
-                    /**
-         * Get the DomPDF instance
-         *
-         * @return \Dompdf\Dompdf 
-         * @static 
-         */ 
-        public static function getDomPDF()
-        {
-                        /** @var \Barryvdh\DomPDF\PDF $instance */
-                        return $instance->getDomPDF();
-        }
-                    /**
-         * Show or hide warnings
-         *
-         * @static 
-         */ 
-        public static function setWarnings($warnings)
-        {
-                        /** @var \Barryvdh\DomPDF\PDF $instance */
-                        return $instance->setWarnings($warnings);
-        }
-                    /**
-         * Load a HTML string
-         *
-         * @param string|null $encoding Not used yet
-         * @static 
-         */ 
-        public static function loadHTML($string, $encoding = null)
-        {
-                        /** @var \Barryvdh\DomPDF\PDF $instance */
-                        return $instance->loadHTML($string, $encoding);
-        }
-                    /**
-         * Load a HTML file
-         *
-         * @static 
-         */ 
-        public static function loadFile($file)
-        {
-                        /** @var \Barryvdh\DomPDF\PDF $instance */
-                        return $instance->loadFile($file);
-        }
-                    /**
-         * Add metadata info
-         *
-         * @param array<string, string> $info
-         * @return static 
-         * @static 
-         */ 
-        public static function addInfo($info)
-        {
-                        /** @var \Barryvdh\DomPDF\PDF $instance */
-                        return $instance->addInfo($info);
-        }
-                    /**
-         * Load a View and convert to HTML
-         *
-         * @param array<string, mixed> $data
-         * @param array<string, mixed> $mergeData
-         * @param string|null $encoding Not used yet
-         * @static 
-         */ 
-        public static function loadView($view, $data = [], $mergeData = [], $encoding = null)
-        {
-                        /** @var \Barryvdh\DomPDF\PDF $instance */
-                        return $instance->loadView($view, $data, $mergeData, $encoding);
-        }
-                    /**
-         * Set/Change an option (or array of options) in Dompdf
-         *
-         * @param array<string, mixed>|string $attribute
-         * @param null|mixed $value
-         * @return \Barryvdh\DomPDF\PDF 
-         * @static 
-         */ 
-        public static function setOption($attribute, $value = null)
-        {
-                        /** @var \Barryvdh\DomPDF\PDF $instance */
-                        return $instance->setOption($attribute, $value);
-        }
-                    /**
-         * Replace all the Options from DomPDF
-         *
-         * @deprecated Use setOption to override individual options.
-         * @param array<string, mixed> $options
-         * @static 
-         */ 
-        public static function setOptions($options)
-        {
-                        /** @var \Barryvdh\DomPDF\PDF $instance */
-                        return $instance->setOptions($options);
-        }
-                    /**
-         * Output the PDF as a string.
-         * 
-         * The options parameter controls the output. Accepted options are:
-         * 
-         * 'compress' = > 1 or 0 - apply content stream compression, this is
-         *    on (1) by default
-         *
-         * @param array<string, int> $options
-         * @return string The rendered PDF as string
-         * @static 
-         */ 
-        public static function output($options = [])
-        {
-                        /** @var \Barryvdh\DomPDF\PDF $instance */
-                        return $instance->output($options);
-        }
-                    /**
-         * Save the PDF to a file
-         *
-         * @static 
-         */ 
-        public static function save($filename, $disk = null)
-        {
-                        /** @var \Barryvdh\DomPDF\PDF $instance */
-                        return $instance->save($filename, $disk);
-        }
-                    /**
-         * Make the PDF downloadable by the user
-         *
-         * @static 
-         */ 
-        public static function download($filename = 'document.pdf')
-        {
-                        /** @var \Barryvdh\DomPDF\PDF $instance */
-                        return $instance->download($filename);
-        }
-                    /**
-         * Return a response with the PDF to show in the browser
-         *
-         * @static 
-         */ 
-        public static function stream($filename = 'document.pdf')
-        {
-                        /** @var \Barryvdh\DomPDF\PDF $instance */
-                        return $instance->stream($filename);
-        }
-                    /**
-         * Render the PDF
-         *
-         * @static 
-         */ 
-        public static function render()
-        {
-                        /** @var \Barryvdh\DomPDF\PDF $instance */
-                        return $instance->render();
-        }
-                    /**
-         * 
-         *
-         * @param array<string> $pc
-         * @static 
-         */ 
-        public static function setEncryption($password, $ownerpassword = '', $pc = [])
-        {
-                        /** @var \Barryvdh\DomPDF\PDF $instance */
-                        return $instance->setEncryption($password, $ownerpassword, $pc);
-        }
-         
-    }
-     
-}
-
-    namespace Livewire { 
-            /**
-     * 
-     *
-     * @see \Livewire\LivewireManager
-     */ 
-        class Livewire {
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function component($alias, $viewClass = null)
-        {
-                        /** @var \Livewire\LivewireManager $instance */
-                        return $instance->component($alias, $viewClass);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function getAlias($class, $default = null)
-        {
-                        /** @var \Livewire\LivewireManager $instance */
-                        return $instance->getAlias($class, $default);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function getComponentAliases()
-        {
-                        /** @var \Livewire\LivewireManager $instance */
-                        return $instance->getComponentAliases();
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function resolveMissingComponent($resolver)
-        {
-                        /** @var \Livewire\LivewireManager $instance */
-                        return $instance->resolveMissingComponent($resolver);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function getClass($alias)
-        {
-                        /** @var \Livewire\LivewireManager $instance */
-                        return $instance->getClass($alias);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function getInstance($component, $id)
-        {
-                        /** @var \Livewire\LivewireManager $instance */
-                        return $instance->getInstance($component, $id);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function mount($name, $params = [])
-        {
-                        /** @var \Livewire\LivewireManager $instance */
-                        return $instance->mount($name, $params);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function dummyMount($id, $tagName)
-        {
-                        /** @var \Livewire\LivewireManager $instance */
-                        return $instance->dummyMount($id, $tagName);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function test($name, $params = [])
-        {
-                        /** @var \Livewire\LivewireManager $instance */
-                        return $instance->test($name, $params);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function visit($browser, $class, $queryString = '')
-        {
-                        /** @var \Livewire\LivewireManager $instance */
-                        return $instance->visit($browser, $class, $queryString);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function actingAs($user, $driver = null)
-        {
-                        /** @var \Livewire\LivewireManager $instance */
-                        return $instance->actingAs($user, $driver);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function addPersistentMiddleware($middleware)
-        {
-                        /** @var \Livewire\LivewireManager $instance */
-                        return $instance->addPersistentMiddleware($middleware);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function setPersistentMiddleware($middleware)
-        {
-                        /** @var \Livewire\LivewireManager $instance */
-                        return $instance->setPersistentMiddleware($middleware);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function getPersistentMiddleware()
-        {
-                        /** @var \Livewire\LivewireManager $instance */
-                        return $instance->getPersistentMiddleware();
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function styles($options = [])
-        {
-                        /** @var \Livewire\LivewireManager $instance */
-                        return $instance->styles($options);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function scripts($options = [])
-        {
-                        /** @var \Livewire\LivewireManager $instance */
-                        return $instance->scripts($options);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function isLivewireRequest()
-        {
-                        /** @var \Livewire\LivewireManager $instance */
-                        return $instance->isLivewireRequest();
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function isDefinitelyLivewireRequest()
-        {
-                        /** @var \Livewire\LivewireManager $instance */
-                        return $instance->isDefinitelyLivewireRequest();
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function isProbablyLivewireRequest()
-        {
-                        /** @var \Livewire\LivewireManager $instance */
-                        return $instance->isProbablyLivewireRequest();
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function originalUrl()
-        {
-                        /** @var \Livewire\LivewireManager $instance */
-                        return $instance->originalUrl();
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function originalPath()
-        {
-                        /** @var \Livewire\LivewireManager $instance */
-                        return $instance->originalPath();
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function originalMethod()
-        {
-                        /** @var \Livewire\LivewireManager $instance */
-                        return $instance->originalMethod();
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function getRootElementTagName($dom)
-        {
-                        /** @var \Livewire\LivewireManager $instance */
-                        return $instance->getRootElementTagName($dom);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function dispatch($event, ...$params)
-        {
-                        /** @var \Livewire\LivewireManager $instance */
-                        return $instance->dispatch($event, ...$params);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function listen($event, $callback)
-        {
-                        /** @var \Livewire\LivewireManager $instance */
-                        return $instance->listen($event, $callback);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function isOnVapor()
-        {
-                        /** @var \Livewire\LivewireManager $instance */
-                        return $instance->isOnVapor();
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function isRunningServerless()
-        {
-                        /** @var \Livewire\LivewireManager $instance */
-                        return $instance->isRunningServerless();
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function withQueryParams($queryParams)
-        {
-                        /** @var \Livewire\LivewireManager $instance */
-                        return $instance->withQueryParams($queryParams);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function setBackButtonCache()
-        {
-                        /** @var \Livewire\LivewireManager $instance */
-                        return $instance->setBackButtonCache();
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function disableBackButtonCache()
-        {
-                        /** @var \Livewire\LivewireManager $instance */
-                        return $instance->disableBackButtonCache();
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function enableBackButtonCache()
-        {
-                        /** @var \Livewire\LivewireManager $instance */
-                        return $instance->enableBackButtonCache();
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function shouldDisableBackButtonCache()
-        {
-                        /** @var \Livewire\LivewireManager $instance */
-                        return $instance->shouldDisableBackButtonCache();
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function flushState()
-        {
-                        /** @var \Livewire\LivewireManager $instance */
-                        return $instance->flushState();
-        }
-         
-    }
-     
-}
-
     namespace Spatie\LaravelIgnition\Facades { 
             /**
      * 
@@ -20287,155 +19791,6 @@
         public static function hasValidSignatureWhileIgnoring($ignoreQuery = [], $absolute = true)
         {
                         return \Illuminate\Http\Request::hasValidSignatureWhileIgnoring($ignoreQuery, $absolute);
-        }
-         
-    }
-     
-}
-
-    namespace Illuminate\Testing { 
-            /**
-     * 
-     *
-     * @mixin \Illuminate\Http\Response
-     */ 
-        class TestResponse {
-                    /**
-         * 
-         *
-         * @see \Livewire\LivewireServiceProvider::registerTestMacros()
-         * @param mixed $component
-         * @static 
-         */ 
-        public static function assertSeeLivewire($component)
-        {
-                        return \Illuminate\Testing\TestResponse::assertSeeLivewire($component);
-        }
-                    /**
-         * 
-         *
-         * @see \Livewire\LivewireServiceProvider::registerTestMacros()
-         * @param mixed $component
-         * @static 
-         */ 
-        public static function assertDontSeeLivewire($component)
-        {
-                        return \Illuminate\Testing\TestResponse::assertDontSeeLivewire($component);
-        }
-         
-    }
-            /**
-     * 
-     *
-     */ 
-        class TestView {
-                    /**
-         * 
-         *
-         * @see \Livewire\LivewireServiceProvider::registerTestMacros()
-         * @param mixed $component
-         * @static 
-         */ 
-        public static function assertSeeLivewire($component)
-        {
-                        return \Illuminate\Testing\TestView::assertSeeLivewire($component);
-        }
-                    /**
-         * 
-         *
-         * @see \Livewire\LivewireServiceProvider::registerTestMacros()
-         * @param mixed $component
-         * @static 
-         */ 
-        public static function assertDontSeeLivewire($component)
-        {
-                        return \Illuminate\Testing\TestView::assertDontSeeLivewire($component);
-        }
-         
-    }
-     
-}
-
-    namespace Illuminate\View { 
-            /**
-     * 
-     *
-     */ 
-        class ComponentAttributeBag {
-                    /**
-         * 
-         *
-         * @see \Livewire\LivewireServiceProvider::registerViewMacros()
-         * @param mixed $name
-         * @static 
-         */ 
-        public static function wire($name)
-        {
-                        return \Illuminate\View\ComponentAttributeBag::wire($name);
-        }
-         
-    }
-            /**
-     * 
-     *
-     */ 
-        class View {
-                    /**
-         * 
-         *
-         * @see \Livewire\Macros\ViewMacros::extends()
-         * @param mixed $view
-         * @param mixed $params
-         * @static 
-         */ 
-        public static function extends($view, $params = [])
-        {
-                        return \Illuminate\View\View::extends($view, $params);
-        }
-                    /**
-         * 
-         *
-         * @see \Livewire\Macros\ViewMacros::layout()
-         * @param mixed $view
-         * @param mixed $params
-         * @static 
-         */ 
-        public static function layout($view, $params = [])
-        {
-                        return \Illuminate\View\View::layout($view, $params);
-        }
-                    /**
-         * 
-         *
-         * @see \Livewire\Macros\ViewMacros::layoutData()
-         * @param mixed $data
-         * @static 
-         */ 
-        public static function layoutData($data = [])
-        {
-                        return \Illuminate\View\View::layoutData($data);
-        }
-                    /**
-         * 
-         *
-         * @see \Livewire\Macros\ViewMacros::section()
-         * @param mixed $section
-         * @static 
-         */ 
-        public static function section($section)
-        {
-                        return \Illuminate\View\View::section($section);
-        }
-                    /**
-         * 
-         *
-         * @see \Livewire\Macros\ViewMacros::slot()
-         * @param mixed $slot
-         * @static 
-         */ 
-        public static function slot($slot)
-        {
-                        return \Illuminate\View\View::slot($slot);
         }
          
     }
@@ -21993,7 +21348,7 @@ namespace  {
              * Add subselect queries to include an aggregate value for a relationship.
              *
              * @param mixed $relations
-             * @param string $column
+             * @param \Illuminate\Contracts\Database\Query\Expression|string $column
              * @param string $function
              * @return \Illuminate\Database\Eloquent\Builder|static 
              * @static 
@@ -22021,7 +21376,7 @@ namespace  {
              * Add subselect queries to include the max of the relation's column.
              *
              * @param string|array $relation
-             * @param string $column
+             * @param \Illuminate\Contracts\Database\Query\Expression|string $column
              * @return \Illuminate\Database\Eloquent\Builder|static 
              * @static 
              */ 
@@ -22035,7 +21390,7 @@ namespace  {
              * Add subselect queries to include the min of the relation's column.
              *
              * @param string|array $relation
-             * @param string $column
+             * @param \Illuminate\Contracts\Database\Query\Expression|string $column
              * @return \Illuminate\Database\Eloquent\Builder|static 
              * @static 
              */ 
@@ -22049,7 +21404,7 @@ namespace  {
              * Add subselect queries to include the sum of the relation's column.
              *
              * @param string|array $relation
-             * @param string $column
+             * @param \Illuminate\Contracts\Database\Query\Expression|string $column
              * @return \Illuminate\Database\Eloquent\Builder|static 
              * @static 
              */ 
@@ -22063,7 +21418,7 @@ namespace  {
              * Add subselect queries to include the average of the relation's column.
              *
              * @param string|array $relation
-             * @param string $column
+             * @param \Illuminate\Contracts\Database\Query\Expression|string $column
              * @return \Illuminate\Database\Eloquent\Builder|static 
              * @static 
              */ 
@@ -22816,7 +22171,7 @@ namespace  {
              * Add a "where date" statement to the query.
              *
              * @param \Illuminate\Contracts\Database\Query\Expression|string $column
-             * @param string $operator
+             * @param \DateTimeInterface|string|null $operator
              * @param \DateTimeInterface|string|null $value
              * @param string $boolean
              * @return \Illuminate\Database\Query\Builder 
@@ -22832,7 +22187,7 @@ namespace  {
              * Add an "or where date" statement to the query.
              *
              * @param \Illuminate\Contracts\Database\Query\Expression|string $column
-             * @param string $operator
+             * @param \DateTimeInterface|string|null $operator
              * @param \DateTimeInterface|string|null $value
              * @return \Illuminate\Database\Query\Builder 
              * @static 
@@ -22847,7 +22202,7 @@ namespace  {
              * Add a "where time" statement to the query.
              *
              * @param \Illuminate\Contracts\Database\Query\Expression|string $column
-             * @param string $operator
+             * @param \DateTimeInterface|string|null $operator
              * @param \DateTimeInterface|string|null $value
              * @param string $boolean
              * @return \Illuminate\Database\Query\Builder 
@@ -22863,7 +22218,7 @@ namespace  {
              * Add an "or where time" statement to the query.
              *
              * @param \Illuminate\Contracts\Database\Query\Expression|string $column
-             * @param string $operator
+             * @param \DateTimeInterface|string|null $operator
              * @param \DateTimeInterface|string|null $value
              * @return \Illuminate\Database\Query\Builder 
              * @static 
@@ -22878,7 +22233,7 @@ namespace  {
              * Add a "where day" statement to the query.
              *
              * @param \Illuminate\Contracts\Database\Query\Expression|string $column
-             * @param string $operator
+             * @param \DateTimeInterface|string|int|null $operator
              * @param \DateTimeInterface|string|int|null $value
              * @param string $boolean
              * @return \Illuminate\Database\Query\Builder 
@@ -22894,7 +22249,7 @@ namespace  {
              * Add an "or where day" statement to the query.
              *
              * @param \Illuminate\Contracts\Database\Query\Expression|string $column
-             * @param string $operator
+             * @param \DateTimeInterface|string|int|null $operator
              * @param \DateTimeInterface|string|int|null $value
              * @return \Illuminate\Database\Query\Builder 
              * @static 
@@ -22909,7 +22264,7 @@ namespace  {
              * Add a "where month" statement to the query.
              *
              * @param \Illuminate\Contracts\Database\Query\Expression|string $column
-             * @param string $operator
+             * @param \DateTimeInterface|string|int|null $operator
              * @param \DateTimeInterface|string|int|null $value
              * @param string $boolean
              * @return \Illuminate\Database\Query\Builder 
@@ -22925,7 +22280,7 @@ namespace  {
              * Add an "or where month" statement to the query.
              *
              * @param \Illuminate\Contracts\Database\Query\Expression|string $column
-             * @param string $operator
+             * @param \DateTimeInterface|string|int|null $operator
              * @param \DateTimeInterface|string|int|null $value
              * @return \Illuminate\Database\Query\Builder 
              * @static 
@@ -22940,7 +22295,7 @@ namespace  {
              * Add a "where year" statement to the query.
              *
              * @param \Illuminate\Contracts\Database\Query\Expression|string $column
-             * @param string $operator
+             * @param \DateTimeInterface|string|int|null $operator
              * @param \DateTimeInterface|string|int|null $value
              * @param string $boolean
              * @return \Illuminate\Database\Query\Builder 
@@ -22956,7 +22311,7 @@ namespace  {
              * Add an "or where year" statement to the query.
              *
              * @param \Illuminate\Contracts\Database\Query\Expression|string $column
-             * @param string $operator
+             * @param \DateTimeInterface|string|int|null $operator
              * @param \DateTimeInterface|string|int|null $value
              * @return \Illuminate\Database\Query\Builder 
              * @static 
@@ -24014,6 +23369,20 @@ namespace  {
             }
              
                 /**
+             * Insert new records into the table using a subquery while ignoring errors.
+             *
+             * @param array $columns
+             * @param \Closure|\Illuminate\Database\Query\Builder|\Illuminate\Database\Eloquent\Builder|string $query
+             * @return int 
+             * @static 
+             */ 
+            public static function insertOrIgnoreUsing($columns, $query)
+            {
+                                /** @var \Illuminate\Database\Query\Builder $instance */
+                                return $instance->insertOrIgnoreUsing($columns, $query);
+            }
+             
+                /**
              * Update records in a PostgreSQL database using the update from syntax.
              *
              * @param array $values
@@ -24404,9 +23773,6 @@ namespace  {
             class Vite extends \Illuminate\Support\Facades\Vite {}
             class Breezejp extends \Askdkc\Breezejp\Facades\Breezejp {}
             class Debugbar extends \Barryvdh\Debugbar\Facades\Debugbar {}
-            class Pdf extends \Barryvdh\DomPDF\Facade\Pdf {}
-            class PDF extends \Barryvdh\DomPDF\Facade\Pdf {}
-            class Livewire extends \Livewire\Livewire {}
             class Flare extends \Spatie\LaravelIgnition\Facades\Flare {}
      
 }

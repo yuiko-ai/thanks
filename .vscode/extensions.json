@@ -1,3 +1,19 @@
 {
-	"recommendations": ["esbenp.prettier-vscode", "bradlc.vscode-tailwindcss", "open-southeners.laravel-pint"]
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "open-southeners.laravel-pint",
+    "bmewburn.vscode-intelephense-client",
+    "onecentlin.laravel-blade",
+    "onecentlin.laravel5-snippets",
+    "codingyu.laravel-goto-view",
+    "stef-k.laravel-goto-controller",
+    "georgykurian.laravel-ide-helper",
+    "porifa.laravel-intelephense",
+    "austenc.laravel-blade-spacer",
+    "amiralizadeh9480.laravel-extra-intellisense",
+    "a-hayashida.laravel-component-jumper",
+    "bradlc.vscode-tailwindcss",
+    "vdanchenkov.tailwind-class-sorter",
+    "shufo.vscode-blade-formatter"
+  ]
 }
