@@ -23,7 +23,7 @@
                     <th>{{$value->id}}</th>
                     <th>{{$value->name}}</th>
                     <th>{{$value->email}}</th>
-                    <th>{{$value->department}}</th>
+                    <th>{{$value->DepartmentsInfo->name}}</th>
                 </tr>
             @endforeach
         </table>
