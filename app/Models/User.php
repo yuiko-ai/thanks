@@ -28,8 +28,8 @@ class User extends Authenticatable
         'department',
     ];
 
-    public function DepartmentsInfo(){
-        return $this->belongsTo(Departments::class,'department','id');
+    public function departmentsInfo(){
+        return $this->belongsTo(Department::class,'department','id');
     }
 
 
