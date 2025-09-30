@@ -19,12 +19,12 @@
                 <th>department</th>
             </tr>
             @foreach($users as $value)
-                <tr>
-                    <th>{{$value->id}}</th>
-                    <th>{{$value->name}}</th>
-                    <th>{{$value->email}}</th>
-                    <th>{{$value->DepartmentsInfo->name}}</th>
-                </tr>
+                    <tr>
+                        <th class="py-4">{{$value->id}}</th>
+                        <th>{{$value->name}}</th>
+                        <th>{{$value->email}}</th>
+                        <th>{{$value->departmentsInfo->name ?? 'なし'}}</th>
+                    </tr>
             @endforeach
         </table>
 
