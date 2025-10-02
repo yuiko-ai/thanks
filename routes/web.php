@@ -6,6 +6,7 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\MailSendController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,5 +51,8 @@ Route::get('/success',function(){
 })->name('success');
 
 
-//mailテーブル一覧取得
+//mail受信一覧取得
 Route::get('/mail',[MailController::class,'index'])->name('mail');
+
+//mail送信一覧取得
+Route::get('/mailsend',[MailSendController::class,'index'])->name('mailsend');
