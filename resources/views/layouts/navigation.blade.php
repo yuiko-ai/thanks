@@ -20,7 +20,7 @@
                 <!-- ユーザー一覧のリンク -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('users')" :active="request()->routeIs('users')">
-                        {{ __('ユーザー 一覧') }}
+                        {{ __('ユーザー') }}
                     </x-nav-link>
                 </div>
 
@@ -34,14 +34,14 @@
                 <!-- 受信一覧のリンク -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('mail')" :active="request()->routeIs('mail')">
-                        {{ __('メール受信一覧') }}
+                        {{ __('受信') }}
                     </x-nav-link>
                 </div>
 
                 <!-- 送信一覧のリンク -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('mailsend')" :active="request()->routeIs('mailsend')">
-                        {{ __('メール送信一覧') }}
+                        {{ __('送信') }}
                     </x-nav-link>
                 </div>
             </div>
