@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,4 +34,16 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
+//ユーザー一覧
 Route::get('/users',[UserController::class,'index']);
+
+//thanksメッセージ入力
+Route::get('/message',[MessageController::class,'index'])->name('message.index');
+
+//messageをDB登録
+Route::post('/message',[MessageController::class,'store'])->name('message.store');
+
+//送信完了のメッセージ表示画面
+Route::get('/success',function(){
+    return view('success');
+})->name('success');
