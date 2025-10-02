@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MessageController;
@@ -35,7 +36,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 //ユーザー一覧
-Route::get('/users',[UserController::class,'index']);
+Route::get('/users',[UserController::class,'index'])->name('users');
 
 //thanksメッセージ入力
 Route::get('/message',[MessageController::class,'index'])->name('message.index');
@@ -47,3 +48,7 @@ Route::post('/message',[MessageController::class,'store'])->name('message.store'
 Route::get('/success',function(){
     return view('success');
 })->name('success');
+
+
+//mailテーブル一覧取得
+Route::get('/mail',[MailController::class,'index'])->name('mail');

@@ -16,6 +16,27 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+
+                <!-- ユーザー一覧のリンク -->
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('users')" :active="request()->routeIs('users')">
+                        {{ __('ユーザー 一覧') }}
+                    </x-nav-link>
+                </div>
+
+                <!-- メッセージ入力のリンク -->
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('message.index')" :active="request()->routeIs('message.index')">
+                        {{ __('メッセージ入力') }}
+                    </x-nav-link>
+                </div>
+
+                <!-- メッセージ入力のリンク -->
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('mail')" :active="request()->routeIs('mail')">
+                        {{ __('メール受信一覧') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

@@ -16,4 +16,8 @@ class Mail extends Model
         'delete_at_time',
     ];
 
+    public function departmentsInfo(){
+        return $this->belongsTo(User::class,'send_user_id','id');
+    }
+
 }
