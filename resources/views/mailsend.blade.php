@@ -1,7 +1,7 @@
 <x-app-layout>
   <x-slot name="header">
     <h2 class="text-xl font-semibold leading-tight text-gray-800">
-      {{ __('メール受信一覧') }}
+      {{ __('メール送信一覧') }}
     </h2>
   </x-slot>
 
@@ -11,15 +11,15 @@
         <table>
             <tr>
                 <th>ID</th>
-                <th>送信者名</th>
+                <th>宛先</th>
                 <th>text</th>
             </tr>
             @foreach($mails as $value)
-                <tr>
-                    <th class="py-4">{{$value->id}}</th>
-                    <th>{{$value->departmentsInfo->name ?? 'なし'}}</th>
-                    <th>{{$value->text}}</th>
-                </tr>
+                    <tr>
+                        <th class="py-4">{{$value->id}}</th>
+                        <th>{{$value->departmentsInfo->name ?? 'なし'}}</th>
+                        <th>{{$value->text}}</th>
+                    </tr>
             @endforeach
         </table>
 
