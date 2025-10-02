@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mail', function (Blueprint $table) {
+        Schema::create('mails', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('send_user_id');
             $table->foreign('send_user_id')->references('id')->on('users');
             $table->unsignedBigInteger('recieve_user_id');
             $table->foreign('recieve_user_id')->references('id')->on('users');
             $table->string('text');
-            $table->timestamp('delete_at_time');
+            $table->timestamp('delete_at_time')->nullable();
             $table->timestamps();
 
         });
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('mail');
+        Schema::dropIfExists('mails');
     }
 };
