@@ -9,7 +9,8 @@ class UserController extends Controller
     //index(ユーザー一覧)
     public function index()
     {
-        $users = User::all();
+        // $users = User::all();
+        $users = User::with('departmentsInfo')->get();
 
         return view('users',compact('users'));
     }
