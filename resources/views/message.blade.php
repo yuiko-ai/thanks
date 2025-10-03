@@ -15,7 +15,11 @@
 
             <select class="form-control" id="user-id" name="recieve_name">
                 @foreach ($users as $user)
-                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                    @if($id == $user->id)
+                        <option value="{{ $user->id }}" selected>{{ $user->name }}</option>
+                    @else
+                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                    @endif
                 @endforeach
             </select>
 

@@ -10,11 +10,14 @@ use Illuminate\Support\Facades\Log;
 class MessageController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        // dd(auth()->id());
         $users = User::all();
-        return view('message',compact('users'));
+        $id = null;
+        if($request->input('id')){
+            $id = $request->input('id');
+        }
+        return view('message',compact('users','id'));
     }
 
     public function store(Request $request)
