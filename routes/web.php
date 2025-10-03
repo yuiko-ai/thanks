@@ -42,8 +42,9 @@ Route::get('/users',[UserController::class,'index'])->name('users');
 //thanksメッセージ入力
 Route::get('/message',[MessageController::class,'index'])->name('message.index');
 
-//messageをDB登録
+//DB登録
 Route::post('/message',[MessageController::class,'store'])->name('message.store');
+
 
 //送信完了のメッセージ表示画面
 Route::get('/success',function(){

@@ -12,20 +12,34 @@
           {{ __("ユーザー一覧") }}
         </div> -->
         <table>
-            <tr>
-                <th>ID</th>
-                <th>name</th>
-                <th>mail</th>
-                <th>department</th>
-            </tr>
-            @foreach($users as $value)
-                    <tr>
-                        <th class="py-4">{{$value->id}}</th>
-                        <th>{{$value->name}}</th>
-                        <th>{{$value->email}}</th>
-                        <th>{{$value->departmentsInfo->name ?? 'なし'}}</th>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>名前</th>
+                    <th>メールアドレス</th>
+                    <th>部署名</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($users as $value)
+                    <tr class="clickable-row" data-url="{{ route('message.index', ['id' => $value->id]) }}" style="cursor: pointer;">
+                        <td class="py-4">{{$value->id}}</td>
+                        <td>{{$value->name}}</td>
+                        <td>{{$value->email}}</td>
+                        <td>{{$value->departmentsInfo->name ?? 'なし'}}</td>
                     </tr>
-            @endforeach
+                @endforeach
+            </tbody>
+
+            <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                document.querySelectorAll('.clickable-row').forEach(row => {
+                    row.addEventListener('click', function() {
+                        window.location.href = this.dataset.url;
+                    });
+                });
+            });
+            </script>
         </table>
 
       </div>
