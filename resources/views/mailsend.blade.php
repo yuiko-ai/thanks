@@ -15,11 +15,11 @@
                 <th>text</th>
             </tr>
             @foreach($mails as $value)
-                    <tr>
-                        <th class="py-4">{{$value->id}}</th>
-                        <th>{{$value->departmentsInfo->name ?? 'なし'}}</th>
-                        <th>{{$value->text}}</th>
-                    </tr>
+                <tr>
+                    <th class="py-4">{{$value->id}}</th>
+                    <th>{{$value->departmentsInfo->name ?? 'なし'}}</th>
+                    <th>{{$value->text}}</th>
+                </tr>
             @endforeach
         </table>
 
