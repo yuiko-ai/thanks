@@ -24,6 +24,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// ログイン画面
+Route::get('/login', function () {
+    return view('login');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
