@@ -10,8 +10,9 @@ class MailSendController extends Controller
     //mail一覧（送信一覧）
     public function index()
     {
-        $mails = Mail::where('send_user_id','=',auth()->id())->get();
-
-        return view('mailsend',compact('mails'));
+        $mails = Mail::where('send_user_id', '=', auth()->id())
+                    ->with('departmentsInfo')
+                    ->get();
+        return view('mailsend', compact('mails'));
     }
 }
