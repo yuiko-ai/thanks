@@ -8,25 +8,22 @@
   <div class="py-12">
     <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
       <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-        <!-- <div class="p-6 text-gray-900">
-          {{ __("ユーザー一覧") }}
-        </div> -->
-        <table>
+        <table class="min-w-full ">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>名前</th>
-                    <th>メールアドレス</th>
-                    <th>部署名</th>
+                    <th class="px-6 py-3 ">ID</th>
+                    <th class="px-6 py-3">名前</th>
+                    <th class="px-6 py-3">メールアドレス</th>
+                    <th class="px-6 py-3">部署名</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($users as $value)
                     <tr class="clickable-row" data-url="{{ route('message.index', ['id' => $value->id]) }}" style="cursor: pointer;">
-                        <td class="py-4">{{$value->id}}</td>
-                        <td>{{$value->name}}</td>
-                        <td>{{$value->email}}</td>
-                        <td>{{$value->departmentsInfo->name ?? 'なし'}}</td>
+                        <td class="py-4 text-center">{{$value->id}}</td>
+                        <td class="text-center">{{$value->name}}</td>
+                        <td class="text-center">{{$value->email}}</td>
+                        <td class="text-center">{{$value->departmentsInfo->name ?? 'なし'}}</td>
                     </tr>
                 @endforeach
             </tbody>
