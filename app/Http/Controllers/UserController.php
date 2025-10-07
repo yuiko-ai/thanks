@@ -10,7 +10,11 @@ class UserController extends Controller
     public function index()
     {
         // $users = User::all();
-        $users = User::with('departmentsInfo')->get();
+        // $users = User::with('departmentsInfo')->get();
+
+        $users = User::where('id','!=',auth()->id())
+                ->with('departmentsInfo')
+                ->get();
 
         return view('users',compact('users'));
     }
