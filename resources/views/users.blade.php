@@ -9,7 +9,7 @@
     <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
       <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
         <table class="min-w-full ">
-            <thead>
+            <thead class="bg-gradient-to-r from-pink-500 to-rose-500 text-white">
                 <tr>
                     <th class="px-6 py-3 ">ID</th>
                     <th class="px-6 py-3">名前</th>
