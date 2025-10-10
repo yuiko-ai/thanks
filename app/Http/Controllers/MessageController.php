@@ -12,7 +12,7 @@ class MessageController extends Controller
 
     public function index(Request $request)
     {
-        $users = User::all();
+        $users = User::where('id','!=',auth()->id())->orderBy('name', 'asc')->get();  // 名前で昇順ソート
         $id = null;
         if($request->input('id')){
             $id = $request->input('id');

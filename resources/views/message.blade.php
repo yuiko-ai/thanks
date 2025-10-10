@@ -1,7 +1,7 @@
 <x-app-layout>
   <x-slot name="header">
     <h2 class="text-xl font-semibold leading-tight text-gray-800">
-      {{ __('❤️❤️サンクスカード❤️❤️') }}
+      {{ __('サンクスカード') }}
     </h2>
   </x-slot>
 
@@ -17,8 +17,8 @@
 
         <form action="{{ route('message.store') }}" method="post" class="messageform px-6">
             @csrf
-            <div class="mb-4">
-                <label for="user-name" class="block mb-2 mt-2 text-lg">{{ ('送り先') }}</label>
+            <div class="mb-2">
+                <label for="user-name" class="block mt-2 text-lg">{{ ('送り先') }}</label>
             </div>
             <div class="mb-4">
                 <select class="form-control w-full" id="user-id" name="recieve_name">
