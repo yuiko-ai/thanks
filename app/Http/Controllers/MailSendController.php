@@ -11,7 +11,8 @@ class MailSendController extends Controller
     public function index()
     {
         $mails = Mail::where('send_user_id', '=', auth()->id())
-                    ->with('departmentsInfo')
+                    ->orderBy('created_at', 'desc')
+                    ->with('receiveUser')
                     ->get();
         return view('mailsend', compact('mails'));
     }
