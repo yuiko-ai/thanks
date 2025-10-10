@@ -11,8 +11,10 @@ class MailController extends Controller
     public function index()
     {
         $mails = Mail::where('recieve_user_id','=',auth()->id())
+                ->orderBy('created_at', 'desc')
                 ->with('departmentsInfo')
                 ->get();
+
 
         return view('mail',compact('mails'));
     }

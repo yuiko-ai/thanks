@@ -4,26 +4,20 @@
       {{ __('受信一覧') }}
     </h2>
   </x-slot>
+  <div class="py-8">
+    @foreach($mails as $value)
+            <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg px-10 mb-4 ">
+                    <div class="flex justify-between mt-4">
+                        <div class="font-semibold text-orange text-2xl">{{$value->departmentsInfo->name ?? 'なし'}}</div>
+                        <div class="text-gray-400 text-lg">{{$value->created_at->format('Y/m/d')}}</div>
+                    </div>
 
-  <div class="py-12">
-    <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-      <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>送信者名</th>
-                <th>text</th>
-            </tr>
-            @foreach($mails as $value)
-                <tr>
-                    <th class="py-4">{{$value->id}}</th>
-                    <th>{{$value->departmentsInfo->name ?? 'なし'}}</th>
-                    <th>{{$value->text}}</th>
-                </tr>
-            @endforeach
-        </table>
-
-      </div>
-    </div>
+                    <div class="text-gray text-center sm:rounded-lg bg-gradient-to-r from-orange-50  to-pink-50 my-4 py-4 ">
+                        <p class=" text-gray-900 text-xl">{{$value->text}}</p>
+                    </div>
+                </div>
+            </div>
+     @endforeach
   </div>
 </x-app-layout>

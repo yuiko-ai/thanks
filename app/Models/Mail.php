@@ -20,4 +20,9 @@ class Mail extends Model
         return $this->belongsTo(User::class,'send_user_id','id');
     }
 
+    public function receiveUser()
+    {
+        return $this->belongsTo(User::class, 'recieve_user_id', 'id');
+    }
+
 }
