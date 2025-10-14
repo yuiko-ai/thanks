@@ -16,6 +16,18 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
+        <!-- Department -->
+        <div class="mt-4">
+            <x-input-label for="departmet" :value="__('Department')" />
+            <select id="department" name="department" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                <option value="">選択してください</option>
+                @foreach ( $departments as $department )
+                    <option value="{{ $department->id }}" {{ old('department') == $department->id ? 'selected' : '' }}>
+                        {{ $department->name }}
+                @endforeach
+            </select>
+        </div>
+
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
