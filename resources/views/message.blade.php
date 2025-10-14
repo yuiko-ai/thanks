@@ -39,7 +39,7 @@
 
             <div class="mb-4 flex justify-center">
                 <button type="submit" class="btn btn-succes w-64 h-10 rounded-lg bg-gradient-to-r from-pink-500 to-rose-500 text-white ">
-                    {{  ('🩷送信🩷' )}}
+                    {{  ('🤍送信🤍' )}}
                 </button>
             </div>
         </form>

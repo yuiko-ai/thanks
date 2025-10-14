@@ -10,7 +10,10 @@
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg px-10 mb-4 ">
                     <div class="flex justify-between mt-4">
-                        <div class="font-semibold text-gray-800 text-2xl">{{$value->receiveUser->name ?? 'なし'}}</div>
+                        <div>
+                            <div class="font-semibold text-gray-800 text-2xl">{{$value->receiveUser->name ?? 'なし'}}</div>
+                            <div class="text-gray-400">{{$value->receiveUser->departmentInfo->name ?? '部署なし'}}</div>
+                        </div>
                         <div class="text-gray-400 text-lg">{{$value->created_at->format('Y/m/d')}}</div>
                     </div>
 
