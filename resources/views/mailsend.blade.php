@@ -6,6 +6,24 @@
   </x-slot>
 
 <div class="py-8">
+    <div>
+        <form action="{{ route('mailsend') }}" method="GET" class="mb-6 flex justify-center gap-4">
+
+        @csrf
+
+            <input type="text" name="keyword" size="50" value="{{ request('keyword') }}" placeholder="送信者名で検索" class="px-3 py-2 rounded-lg">
+            <select name="department_id" class="px-3 py-2">
+                <option value="">部署を選択</option>
+                @foreach ($departments as $department)
+                    <option value="{{ $department->id }}"
+                        {{ request('department_id') == $department->id ? 'selected' : '' }}>
+                        {{ $department->name }}
+                    </option>
+                @endforeach
+            </select>
+            <input type="submit" value="検索" class="bg-rose-500 text-white px-4 py-2 rounded hover:bg-rose-600">
+        </form>
+    </div>
     @foreach($mails as $value)
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg px-10 mb-4 ">
