@@ -12,7 +12,7 @@ class MailSendController extends Controller
     {
         $mails = Mail::where('send_user_id', '=', auth()->id())
                     ->orderBy('created_at', 'desc')
-                    ->with('receiveUser')
+                    ->with('receiveUser.departmentInfo')
                     ->get();
         return view('mailsend', compact('mails'));
     }

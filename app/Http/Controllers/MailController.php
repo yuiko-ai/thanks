@@ -12,7 +12,7 @@ class MailController extends Controller
     {
         $mails = Mail::where('recieve_user_id','=',auth()->id())
                 ->orderBy('created_at', 'desc')
-                ->with('departmentsInfo')
+                ->with('departmentsInfo.departmentInfo')
                 ->get();
 
 
