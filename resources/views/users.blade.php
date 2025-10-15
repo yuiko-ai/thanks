@@ -19,7 +19,7 @@
             </thead>
             <tbody>
                 @foreach($users as $value)
-                    <tr class="clickable-row" data-url="{{ route('message.index', ['id' => $value->id]) }}" style="cursor: pointer;">
+                    <tr class="clickable-row hover:bg-pink-50 transition-colors duration-200"data-url="{{ route('message.index', ['id' => $value->id]) }}" style="cursor: pointer;">
                         <td class="py-4 text-center">{{$value->id}}</td>
                         <td class="text-center">{{$value->name}}</td>
                         <td class="text-center">{{$value->email}}</td>
