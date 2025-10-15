@@ -26,6 +26,7 @@ class User extends Authenticatable
         'email',
         'password',
         'department',
+        'admin',
     ];
 
     public function departmentsInfo(){
