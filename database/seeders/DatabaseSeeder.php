@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use App\Models\Department;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
@@ -18,10 +19,17 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // 部署を直接DBに挿入（Factoryを使わない）
-        DB::table('departments')->insert([
+        // DB::table('departments')->insert([
+        //     ['name' => 'ちいかわ課', 'created_at' => now(), 'updated_at' => now()],
+        //     ['name' => 'ディズニー課', 'created_at' => now(), 'updated_at' => now()],
+        //     ['name' => 'サンリオ課', 'created_at' => now(), 'updated_at' => now()],
+        // ]);
+
+        Department::insert([
             ['name' => 'ちいかわ課', 'created_at' => now(), 'updated_at' => now()],
             ['name' => 'ディズニー課', 'created_at' => now(), 'updated_at' => now()],
             ['name' => 'サンリオ課', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'ポケモン課', 'created_at' => now(), 'updated_at' => now()]
         ]);
 
         // ランダムユーザーを10人作成
@@ -37,39 +45,45 @@ class DatabaseSeeder extends Seeder
         // 必要に応じてコメントアウトを外して使用
 
         User::factory()->create([
-            'name' => 'Maeda Masamune',
+            'name' => '前田将宗',
             'email' => 'masamune.maeda@arsaga.jp',
             'department' => 3,
         ]);
 
         User::factory()->create([
-            'name' => 'Tsukino Yamako',
+            'name' => '月野やま子',
             'email' => 'yamako.tsukino@arsaga.jp',
             'department' => 3,
         ]);
 
         User::factory()->create([
-            'name' => 'Yuiko Aizawa',
+            'name' => '相澤由依子',
             'email' => 'yuiko.aizawa@arsaga.jp',
             'department' => 2,
         ]);
 
         User::factory()->create([
-            'name' => 'Shimizu Aya',
+            'name' => '清水綾',
             'email' => 'aya.shimizu@arsaga.jp',
             'department' => 1,
         ]);
 
         User::factory()->create([
-            'name' => 'Kawashita Kotako',
+            'name' => '川下小太郎',
             'email' => 'kotako.kawashita@arsaga.jp',
             'department' => 3,
         ]);
 
         User::factory()->create([
-            'name' => 'Matsuzaki Kouhei',
+            'name' => '松崎航平',
             'email' => 'kouhei.matsuzaki@arsaga.jp',
             'department' => 1,
+        ]);
+
+        User::factory()->create([
+            'name' => '瀬戸口ふうが',
+            'email' => 'ksetouchi@arsaga.jp',
+            'department' => 4,
         ]);
 
     }
