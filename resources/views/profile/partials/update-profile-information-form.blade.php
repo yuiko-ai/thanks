@@ -47,6 +47,16 @@
             @endif
         </div>
 
+        <div>
+            <x-input-label for="department" :value="__('department')" />
+            <select id="department" name="department" class="boder-gray-100 rounded-md mt-1 w-full">
+                @foreach ( $departments as $department )
+                    <option value="{{ $department->id }}" {{ old('department', $user->department) == $department->id ? 'selected' : '' }}>
+                        {{ $department->name }}
+                @endforeach
+            </select>
+        </div>
+
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 
