@@ -13,13 +13,18 @@ class Thanks extends Model
 
     protected $fillable = [
         'send_user_id',
-        'recieve_user_id',
+        'receive_user_id',
         'text',
-        'deleted_at',
+        'delete_at',
     ];
 
     //ユーザー
-    public function user()
+    public function receiveUser()
+    {
+        return $this->belongsTo(User::class, 'receive_user_id', 'id');
+    }
+
+    public function sendUser()
     {
         return $this->belongsTo(User::class, 'send_user_id', 'id');
     }
