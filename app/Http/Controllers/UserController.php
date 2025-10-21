@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
+
+use App\Models\Department;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -12,10 +15,18 @@ class UserController extends Controller
         // $users = User::all();
         // $users = User::with('departmentsInfo')->get();
 
-        $users = User::where('id','!=',auth()->id())
-                ->with('departmentsInfo')
-                ->get();
+        $users = User::where('id', '!=', auth()->id())
+            ->with('department')
+            ->get();
 
-        return view('users',compact('users'));
+        // dd([
+        //     'users' => $users->toArray(),
+        //     'first_user' => $users->first(),
+        //     'first_user_department' => $users->first()->department,
+        // ]);
+
+        $departmentNames = Department::pluck('name', 'id')->toArray();
+
+        return view('users', compact('users', 'departmentNames'));
     }
 }
