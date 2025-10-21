@@ -6,40 +6,50 @@
   </x-slot>
   <div class="py-8">
     <div class="">
-        <form action="{{ route('mail') }}" method="GET" class="mb-6 flex  gap-4  justify-center ">
+      <form class="mb-6 flex justify-center gap-4" action="{{ route('mail') }}" method="GET">
 
         @csrf
 
-            <input type="text" name="keyword" size="50" value="{{ request('keyword') }}" placeholder="送信者名で検索" class="px-3 py-2 rounded-lg">
-            <select name="department_id" class="px-3 py-2">
-                <option value="">部署を選択</option>
-                @foreach ($departments as $department)
-                    <option value="{{ $department->id }}"
-                        {{ request('department_id') == $department->id ? 'selected' : '' }}>
-                        {{ $department->name }}
-                    </option>
-                @endforeach
-            </select>
-            <input type="submit" value="検索" class="rounded-lg bg-rose-500 text-white px-4 py-2 rounded hover:bg-rose-600">
-        </form>
+        <input class="rounded-lg px-3 py-2" name="keyword" type="text"
+          value="{{ request('keyword') }}" size="50" placeholder="送信者名で検索">
+        <select class="px-3 py-2" name="department_id">
+          <option value="">部署を選択</option>
+          @foreach ($departments as $department)
+            <option value="{{ $department->id }}"
+              {{ request('department_id') == $department->id ? 'selected' : '' }}>
+              {{ $department->name }}
+            </option>
+          @endforeach
+        </select>
+        <input class="rounded rounded-lg bg-rose-500 px-4 py-2 text-white hover:bg-rose-600"
+          type="submit" value="検索">
+      </form>
     </div>
 
-    @foreach($mails as $value)
-            <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg px-10 mb-4 ">
-                    <div class="flex justify-between mt-4">
-                        <div>
-                            <div class="font-semibold text-orange text-2xl">{{$value->departmentsInfo->name ?? 'なし'}}</div>
-                            <div class="text-gray-400 text-lg">{{$value->departmentsInfo->departmentInfo->name ?? '部署なし'}}</div>
-                        </div>
-                        <div class="text-gray-400 text-lg">{{$value->created_at->format('Y/m/d')}}</div>
-                    </div>
-
-                    <div class="text-gray text-center sm:rounded-lg bg-gradient-to-r from-orange-50  to-pink-50 my-4 py-4 ">
-                        <p class=" text-gray-900 text-xl">{{$value->text}}</p>
-                    </div>
+    @foreach ($users as $user)
+      @foreach ($user->receivedThanks as $thanks)
+        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+          <div class="mb-4 overflow-hidden bg-white px-10 shadow-sm sm:rounded-lg">
+            <div class="mt-4 flex justify-between">
+              <div>
+                <div class="text-2xl font-semibold text-gray-800">
+                  {{ $thanks->sendUser->name ?? 'なし' }}</div>
+                <div class="text-gray-400">
+                  {{-- IDは取得できているが、部署名が出力できないため、連想配列で紐付け表示 --}}
+                  {{ $departmentNames[$thanks->sendUser->department] ?? '無所属' }}
+                  {{-- {{ $thanks->receiveUser->department->name ?? '無所属' }} --}}
                 </div>
+              </div>
+              <div class="text-lg text-gray-400">{{ $thanks->created_at->format('Y/m/d') }}</div>
             </div>
-     @endforeach
+
+            <div
+              class="text-gray my-4 bg-gradient-to-r from-orange-50 to-pink-50 py-4 text-center sm:rounded-lg">
+              <p class="text-xl text-gray-900">{{ $thanks->text }}</p>
+            </div>
+          </div>
+        </div>
+      @endforeach
+    @endforeach
   </div>
 </x-app-layout>
