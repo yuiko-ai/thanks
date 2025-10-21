@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('send_user_id');
             $table->foreign('send_user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('recieve_user_id');
-            $table->foreign('recieve_user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('receive_user_id');
+            $table->foreign('receive_user_id')->references('id')->on('users');
             $table->string('text');
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
