@@ -10,11 +10,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-
 
     /**
      * The attributes that are mass assignable.
@@ -26,16 +24,28 @@ class User extends Authenticatable
         'email',
         'password',
         'department',
-        'admin',
+        'is_admin',
     ];
 
-    public function departmentsInfo(){
-        return $this->belongsTo(Department::class,'department','id');
-    }
-
-    public function departmentInfo()
+    public function department()
     {
         return $this->belongsTo(Department::class, 'department', 'id');
+    }
+
+    /**
+     * ユーザーが送信したメッセージ
+     */
+    public function sentThanks()
+    {
+        return $this->hasMany(Thanks::class, 'send_user_id');
+    }
+
+    /**
+     * ユーザーが受信したメッセージ
+     */
+    public function receivedThanks()
+    {
+        return $this->hasMany(Thanks::class, 'receive_user_id');
     }
 
     /**
