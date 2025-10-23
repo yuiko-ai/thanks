@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Database\Seeders;
 
 use App\Models\Department;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'ちいかわ課', 'created_at' => now(), 'updated_at' => now()],
             ['name' => 'ディズニー課', 'created_at' => now(), 'updated_at' => now()],
             ['name' => 'サンリオ課', 'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'ポケモン課', 'created_at' => now(), 'updated_at' => now()]
+            ['name' => 'ポケモン課', 'created_at' => now(), 'updated_at' => now()],
         ]);
 
         // ランダムユーザーを10人作成
@@ -69,6 +69,12 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory()->create([
+            'name' => '横田りの',
+            'email' => 'rino.yokota@arsaga.jp',
+            'department' => 1,
+        ]);
+
+        User::factory()->create([
             'name' => '川下小太郎',
             'email' => 'kotako.kawashita@arsaga.jp',
             'department' => 3,
@@ -86,23 +92,17 @@ class DatabaseSeeder extends Seeder
             'department' => 4,
         ]);
 
+        User::factory()->create([
+            'name' => '勝本Baby',
+            'email' => 'katsumotobaby@arsaga.jp',
+            'department' => 2,
+        ]);
+
+        User::factory()->create([
+            'name' => '飯干あかね',
+            'email' => 'iiboshi@arsaga.jp',
+            'department' => 2,
+        ]);
+
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -23,13 +23,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'department',
+        'department_id',
         'is_admin',
     ];
 
     public function departmentInfo()
     {
-        return $this->belongsTo(Department::class, 'department', 'id');
+        return $this->belongsTo(Department::class, 'department_id', 'id');
     }
 
     /**

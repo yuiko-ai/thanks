@@ -47,7 +47,7 @@ class MailController extends Controller
 
                 if ($request->filled('department_id')) {
                     $q->whereHas('sendUser', function ($subQuery) use ($request) {
-                        $subQuery->where('department', $request->department_id);
+                        $subQuery->where('department_id', $request->department_id);
                     });
                 }
 

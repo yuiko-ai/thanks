@@ -29,7 +29,7 @@ class MailSendController extends Controller
                 // 受信者の部署での検索
                 if ($request->filled('department_id')) {
                     $q->whereHas('receiveUser', function ($subQuery) use ($request) {
-                        $subQuery->where('department', $request->department_id);
+                        $subQuery->where('department_id', $request->department_id);
                     });
                 }
             }]);
