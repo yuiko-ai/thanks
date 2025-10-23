@@ -35,9 +35,7 @@
                 <div class="text-2xl font-semibold text-gray-800">
                   {{ $thanks->receiveUser->name ?? 'なし' }}</div>
                 <div class="text-gray-400">
-                  {{-- IDは取得できているが、部署名が出力できないため、連想配列で紐付け表示 --}}
-                  {{ $departmentNames[$thanks->receiveUser->department] ?? '無所属' }}
-                  {{-- {{ $thanks->receiveUser->department->name ?? '無所属' }} --}}
+                  {{ $thanks->receiveUser->departmentInfo->name ?? '無所属' }}
                 </div>
               </div>
               <div class="text-lg text-gray-400">{{ $thanks->created_at->format('Y/m/d') }}</div>

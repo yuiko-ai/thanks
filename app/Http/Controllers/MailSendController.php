@@ -14,34 +14,14 @@ class MailSendController extends Controller
     public function index(Request $request)
     {
 
-        // $query = User::with(['sentThanks' => function ($q) {
-        //     $q->where('send_user_id', '=', auth()->id())
-        //         ->orderBy('created_at', 'desc')
-        //         ->with(['receiveUser.department']);
-        // }]);
-
-        // // 送信者名の曖昧検索
-        // if ($request->has('keyword') && ! empty($request->keyword)) {
-        //     $query->whereHas('receivedThanks.receiveUser', function ($q) use ($request) {
-        //         $q->where('name', 'like', "%{$request->keyword}%");
-        //     });
-        // }
-
-        // // 部署での検索
-        // if ($request->has('department_id') && ! empty($request->department_id)) {
-        //     $query->whereHas('receivedThanks.receiveUser', function ($q) use ($request) {
-        //         $q->where('department', $request->department_id);
-        //     });
-        // }
-
         $query = User::where('id', auth()->id())
             ->with(['sentThanks' => function ($q) use ($request) {
                 $q->orderBy('created_at', 'desc')
-                    ->with(['receiveUser.department']);
+                    ->with(['receiveUser.departmentInfo']);
 
                 // 受信者名の曖昧検索
                 if ($request->filled('keyword')) { //リクエストkeywordに含まれているのなら
-                    $q->whereHas('receiveUser', function ($subQuery) use ($request) { //$qはsentThanksで
+                    $q->whereHas('receiveUser', function ($subQuery) use ($request) {
                         $subQuery->where('name', 'like', "%{$request->keyword}%");
                     });
                 }
@@ -56,22 +36,18 @@ class MailSendController extends Controller
 
         $users = $query->get();
 
-        // デバッグ用
+        // dd($users->first()->sentThanks->first()->receiveUser);
+        // //デバッグ用
         // dd([
         //     'keyword' => $request->keyword,
         //     'department_id' => $request->department_id,
         //     'query' => $query->toSql(),
         //     'bindings' => $query->getBindings(),
-        //     'users' => $users->toArray(),
+        //     'users' => $users,
         // ]);
 
         $departments = Department::all();
 
-        //部署名をidと紐付け
-        $departmentNames = Department::pluck('name', 'id')->toArray();
-
-        // dd($users);
-
-        return view('mailsend', compact('users', 'departments', 'departmentNames'));
+        return view('mailsend', compact('users', 'departments'));
     }
 }

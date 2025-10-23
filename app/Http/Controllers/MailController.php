@@ -36,7 +36,7 @@ class MailController extends Controller
         $query = User::where('id', auth()->id())
             ->with(['receivedThanks' => function ($q) use ($request) {
                 $q->orderBy('created_at', 'desc')
-                    ->with(['sendUser.department']);
+                    ->with(['sendUser.departmentInfo']);
 
                 //送信者名の曖昧検索
                 if ($request->filled('keyword')) {
@@ -58,8 +58,8 @@ class MailController extends Controller
         $departments = Department::all();
 
         //部署名をidと紐付け
-        $departmentNames = Department::pluck('name', 'id')->toArray();
+        // $departmentNames = Department::pluck('name', 'id')->toArray();
 
-        return view('mail', compact('users', 'departments', 'departmentNames'));
+        return view('mail', compact('users', 'departments'));
     }
 }
