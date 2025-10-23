@@ -25,8 +25,7 @@
                 <td class="py-4 text-center">{{ $value->id }}</td>
                 <td class="text-center">{{ $value->name }}</td>
                 <td class="text-center">{{ $value->email }}</td>
-                {{-- <td class="text-center">{{ $value->department->name ?? '無所属' }}</td> --}}
-                <td class="text-center">{{ $departmentNames[$value->department] ?? '無所属' }}</td>
+                <td class="text-center">{{ $value->departmentInfo->name ?? '無所属' }}</td>
               </tr>
             @endforeach
           </tbody>

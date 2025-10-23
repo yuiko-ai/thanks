@@ -27,7 +27,7 @@ class User extends Authenticatable
         'is_admin',
     ];
 
-    public function department()
+    public function departmentInfo()
     {
         return $this->belongsTo(Department::class, 'department', 'id');
     }

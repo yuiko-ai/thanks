@@ -21,8 +21,8 @@
             </option>
           @endforeach
         </select>
-        <input class="rounded rounded-lg bg-rose-500 px-4 py-2 text-white hover:bg-rose-600"
-          type="submit" value="検索">
+        <input class="rounded bg-rose-500 px-4 py-2 text-white hover:bg-rose-600" type="submit"
+          value="検索">
       </form>
     </div>
 
@@ -36,8 +36,8 @@
                   {{ $thanks->sendUser->name ?? 'なし' }}</div>
                 <div class="text-gray-400">
                   {{-- IDは取得できているが、部署名が出力できないため、連想配列で紐付け表示 --}}
-                  {{ $departmentNames[$thanks->sendUser->department] ?? '無所属' }}
-                  {{-- {{ $thanks->receiveUser->department->name ?? '無所属' }} --}}
+                  {{-- {{ $departmentNames[$thanks->sendUser->department] ?? '無所属' }} --}}
+                  {{ $thanks->receiveUser->departmentInfo->name ?? '無所属' }}
                 </div>
               </div>
               <div class="text-lg text-gray-400">{{ $thanks->created_at->format('Y/m/d') }}</div>
