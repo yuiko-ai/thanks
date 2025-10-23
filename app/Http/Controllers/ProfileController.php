@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Department;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
-use App\Models\Department;
 
 class ProfileController extends Controller
 {
@@ -18,6 +20,7 @@ class ProfileController extends Controller
     public function edit(Request $request): View
     {
         $departments = Department::all(); //部署データ取得
+
         return view('profile.edit', [
             'user' => $request->user(),
             'departments' => $departments, //bladeで$departmentsの変数が使える
@@ -35,8 +38,7 @@ class ProfileController extends Controller
             $request->user()->email_verified_at = null;
         }
 
-
-        $request->user()->department = $request->department;//部署情報の更新
+        $request->user()->department_id = $request->department_id; //部署情報の更新
 
         $request->user()->save();
 
