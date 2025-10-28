@@ -29,7 +29,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         //管理者
-        Gate::define('mailall', function (User $user) {
+        Gate::define('isadmin', function (User $user) {
             // dd($user->is_admin === true);
             // dd([
             //     'is_admin_value' => $user->is_admin,

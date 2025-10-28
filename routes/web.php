@@ -48,6 +48,11 @@ require __DIR__ . '/auth.php';
 //ユーザー一覧
 Route::get('/users', [UserController::class, 'index'])->name('users');
 
+// 権限更新(管理者)
+Route::post('users/{user}/update', [UserController::class, 'update'])
+    ->middleware(['auth', 'can:isadmin'])
+    ->name('users.update');
+
 //thanksメッセージ入力
 Route::get('/message', [MessageController::class, 'index'])->name('message.index');
 
@@ -65,6 +70,7 @@ Route::get('/mail', [MailController::class, 'index'])->name('mail');
 //mail送信一覧取得
 Route::get('/mailsend', [MailSendController::class, 'index'])->name('mailsend');
 
-Route::group(['middleware' => 'can:mailall'], function () {
+// ALLカードリスト(isadmin)
+Route::group(['middleware' => 'can:isadmin'], function () {
     Route::get('/mailall', [AllMailController::class, 'index'])->name('mailall');
 });
