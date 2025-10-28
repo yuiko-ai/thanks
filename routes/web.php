@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\AllMailController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\MailSendController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\MessageController;
-use App\Http\Controllers\MailSendController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,28 +41,30 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::post('logout',[AuthenticatedSessionController::class,'destroy'])->middleware('auth')->name('logout');
+Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->middleware('auth')->name('logout');
 
 require __DIR__ . '/auth.php';
 
 //ユーザー一覧
-Route::get('/users',[UserController::class,'index'])->name('users');
+Route::get('/users', [UserController::class, 'index'])->name('users');
 
 //thanksメッセージ入力
-Route::get('/message',[MessageController::class,'index'])->name('message.index');
+Route::get('/message', [MessageController::class, 'index'])->name('message.index');
 
 //DB登録
-Route::post('/message',[MessageController::class,'store'])->name('message.store');
-
+Route::post('/message', [MessageController::class, 'store'])->name('message.store');
 
 //送信完了のメッセージ表示画面
-Route::get('/success',function(){
+Route::get('/success', function () {
     return view('success');
 })->name('success');
 
-
 //mail受信一覧取得
-Route::get('/mail',[MailController::class,'index'])->name('mail');
+Route::get('/mail', [MailController::class, 'index'])->name('mail');
 
 //mail送信一覧取得
-Route::get('/mailsend',[MailSendController::class,'index'])->name('mailsend');
+Route::get('/mailsend', [MailSendController::class, 'index'])->name('mailsend');
+
+Route::group(['middleware' => 'can:mailall'], function () {
+    Route::get('/mailall', [AllMailController::class, 'index'])->name('mailall');
+});
