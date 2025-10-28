@@ -22,7 +22,7 @@
           </div>
           <div class="mb-4">
             <select
-              class="form-control @error('receive_name') border-red-500 @enderror w-full"id="user-id"
+              class="form-control @error('receive_name') border-red-500 @enderror w-full focus:border-rose-300 focus:ring focus:ring-rose-200 focus:ring-opacity-50"id="user-id"
               name="receive_name">
               <option value="">選択してください</option>
               @foreach ($users as $user)
@@ -41,7 +41,8 @@
 
           <div class="mb-4">
             <label class="text-lg" for="text">{{ 'メッセージ' }}</label><br>
-            <textarea class="form-control @error('message_text') border-red-500 @enderror w-full"
+            <textarea
+              class="form-control @error('message_text') border-red-500 @enderror w-full focus:border-pink-300 focus:ring focus:ring-rose-200 focus:ring-opacity-50"
               name="message_text" rows="5">{{ old('message_text') }}</textarea><br>
             @error('message_text')
               <div class="mt-1 text-red-600">{{ $message }}</div>

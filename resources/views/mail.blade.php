@@ -10,9 +10,13 @@
 
         @csrf
 
-        <input class="rounded-lg px-3 py-2" name="keyword" type="text"
-          value="{{ request('keyword') }}" size="50" placeholder="送信者名で検索">
-        <select class="px-3 py-2" name="department_id">
+        <input
+          class="rounded-lg px-3 py-2 focus:border-rose-400 focus:ring focus:ring-rose-300 focus:ring-opacity-50"
+          name="keyword" type="text" value="{{ request('keyword') }}" size="50"
+          placeholder="送信者名で検索">
+        <select
+          class="rounded-md px-3 py-2 shadow-sm focus:border-rose-400 focus:ring focus:ring-rose-300 focus:ring-opacity-50"
+          name="department_id">
           <option value="">部署を選択</option>
           @foreach ($departments as $department)
             <option value="{{ $department->id }}"
