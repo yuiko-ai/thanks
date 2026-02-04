@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Requests;
 
+use App\Rules\ContainsNgWord;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreMessageRequest extends FormRequest
@@ -26,7 +27,7 @@ class StoreMessageRequest extends FormRequest
         return [
             //テキストに255文字以上入力したらバリデーション表示
             'receive_name' => ['required', 'exists:users,id'],
-            'message_text' => ['required', 'max:255'],
+            'message_text' => ['required', 'max:255', new ContainsNgWord],
         ];
     }
 
